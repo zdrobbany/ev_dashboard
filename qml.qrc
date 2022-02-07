@@ -1,0 +1,94 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>DialComponent.qml</file>
+        <file>OutterLine.qml</file>
+        <file>Fonts/CherrySwash-Bold.otf</file>
+        <file>Fonts/CherrySwash-Regular.otf</file>
+        <file>Fonts/IBMPlexMono-Bold.otf</file>
+        <file>Fonts/IBMPlexMono-ExtraLight.otf</file>
+        <file>Fonts/IBMPlexMono-ExtraLightItalic.otf</file>
+        <file>Fonts/IBMPlexMono-Italic.otf</file>
+        <file>Fonts/IBMPlexMono-Light.otf</file>
+        <file>Fonts/IBMPlexMono-LightItalic.otf</file>
+        <file>Fonts/IBMPlexMono-Medium.otf</file>
+        <file>Fonts/IBMPlexMono-MediumItalic.otf</file>
+        <file>Fonts/IBMPlexMono-Regular.otf</file>
+        <file>Fonts/IBMPlexMono-SemiBold.otf</file>
+        <file>Fonts/IBMPlexMono-SemiBoldItalic.otf</file>
+        <file>Fonts/IBMPlexMono-Text.otf</file>
+        <file>Fonts/IBMPlexMono-TextItalic.otf</file>
+        <file>Fonts/IBMPlexMono-Thin.otf</file>
+        <file>Fonts/IBMPlexMono-ThinItalic.otf</file>
+        <file>Fonts/IBMPlexSans-Bold.otf</file>
+        <file>Fonts/IBMPlexSans-BoldItalic.otf</file>
+        <file>Fonts/IBMPlexSans-ExtraLightItalic.otf</file>
+        <file>Fonts/IBMPlexSans-Italic.otf</file>
+        <file>Fonts/IBMPlexSans-Light.otf</file>
+        <file>Fonts/IBMPlexSans-LightItalic.otf</file>
+        <file>Fonts/IBMPlexSans-Medium.otf</file>
+        <file>Fonts/IBMPlexSans-MediumItalic.otf</file>
+        <file>Fonts/IBMPlexSans-Regular.otf</file>
+        <file>Fonts/IBMPlexSans-SemiBold.otf</file>
+        <file>Fonts/IBMPlexSans-SemiBoldItalic.otf</file>
+        <file>Fonts/IBMPlexSans-Text.otf</file>
+        <file>Fonts/IBMPlexSans-TextItalic.otf</file>
+        <file>Fonts/IBMPlexSans-Thin.otf</file>
+        <file>Fonts/IBMPlexSans-ThinItalic.otf</file>
+        <file>Fonts/IBMPlexSerif-Bold.otf</file>
+        <file>Fonts/IBMPlexSerif-BoldItalic.otf</file>
+        <file>Fonts/IBMPlexSerif-ExtraLight.otf</file>
+        <file>Fonts/IBMPlexSerif-ExtraLightItalic.otf</file>
+        <file>Fonts/IBMPlexSerif-Italic.otf</file>
+        <file>Fonts/IBMPlexSerif-Light.otf</file>
+        <file>Fonts/IBMPlexSerif-LightItalic.otf</file>
+        <file>Fonts/IBMPlexSerif-Medium.otf</file>
+        <file>Fonts/IBMPlexSerif-MediumItalic.otf</file>
+        <file>Fonts/IBMPlexSerif-Regular.otf</file>
+        <file>Fonts/IBMPlexSerif-SemiBold.otf</file>
+        <file>Fonts/IBMPlexSerif-SemiBoldItalic.otf</file>
+        <file>Fonts/IBMPlexSerif-Text.otf</file>
+        <file>Fonts/IBMPlexSerif-TextItalic.otf</file>
+        <file>Fonts/IBMPlexSerif-Thin.otf</file>
+        <file>Fonts/IBMPlexSerif-ThinItalic.otf</file>
+        <file>Fonts/SIL Open Font License.txt</file>
+        <file>Status.qml</file>
+        <file>Image/ev-exmp.png</file>
+        <file>CustomBar.qml</file>
+        <file>Image/Not Charging.png</file>
+        <file>Image/EV-Instrument-Cluster-Design-3-05.png</file>
+        <file>Image/Background.png</file>
+        <file>Image/Background2.png</file>
+        <file>CustomLongBar.qml</file>
+        <file>Image/Battery line full.svg</file>
+        <file>Image/Battery line kosong-01.svg</file>
+        <file>Image/Battery temperature bar-01.svg</file>
+        <file>Image/Motor temperature bar-01.svg</file>
+        <file>Image/Power bar (kanan).svg</file>
+        <file>Image/Power line full (kanan)-01.svg</file>
+        <file>Image/Power line kosong (kanan)-01.svg</file>
+        <file>Image/Speed Bar (kiri).svg</file>
+        <file>Image/Speed line full (kiri).svg</file>
+        <file>Image/Speed line kosong (kiri).svg</file>
+        <file>Image/Power Bar Indicator-01.svg</file>
+        <file>BackGround.qml</file>
+        <file>Image/Background fix-01.svg</file>
+        <file>Image/Background fix revisi-01.png</file>
+        <file>Image/icon/battery icon-01.svg</file>
+        <file>Image/icon/Battery temperature icon-01.svg</file>
+        <file>Image/icon/door icon-01.svg</file>
+        <file>Image/icon/engine error icon-01.svg</file>
+        <file>Image/icon/fog lamp icon.svg</file>
+        <file>Image/icon/main lamp high icon-01.svg</file>
+        <file>Image/icon/Main lamp low icon-01.svg</file>
+        <file>Image/icon/motor temperature icon-01.svg</file>
+        <file>Image/icon/parking brake icon-01.svg</file>
+        <file>Image/icon/parking warning icon-01.svg</file>
+        <file>Image/icon/seat belt icon-01.svg</file>
+        <file>Image/icon/turn light icon (kanan)-01.svg</file>
+        <file>Image/icon/Turn light icon (kiri)-01.svg</file>
+        <file>IconIndicator.qml</file>
+        <file>IndicatorGroup.qml</file>
+        <file>TestElement.qml</file>
+    </qresource>
+</RCC>
