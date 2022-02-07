@@ -1,7 +1,5 @@
-import QtQuick 2.11
-import QtQuick.Controls 2.12
-import QtQuick.Shapes 1.12
-import QtGraphicalEffects 1.0
+import QtQuick 2.15
+import QtQuick.Controls 2.15
 
 Item {
     anchors.fill: parent
@@ -86,9 +84,4 @@ Item {
 
 }
 
-/*##^##
-Designer {
-    D{i:2;anchors_x:576}D{i:3;anchors_height:720;anchors_x:576;anchors_y:"-11"}D{i:4;anchors_height:720;anchors_y:"-56"}
-D{i:1;anchors_height:100;anchors_width:100;anchors_x:428;anchors_y:496}D{i:7;anchors_height:100;anchors_width:100;anchors_x:682;anchors_y:360;invisible:true}
-}
-##^##*/
+

@@ -1,11 +1,10 @@
-import QtQuick 2.11
-import QtQuick.Window 2.11
-import QtQuick.Shapes 1.11
-import QtQuick.Controls 2.12
-import QtGraphicalEffects 1.0
-import QtQuick.Layouts 1.11
-import QtQuick.Shapes 1.12
-import Config 1.0
+import QtQuick 2.15
+import QtQuick.Window 2.15
+import QtQuick.Controls 2.15
+import QtQuick.Layouts 1.15
+//import QtQuick.Shapes 1.11
+//import QtGraphicalEffects 1.0
+//import QtQuick.Shapes 1.12
 
 Item {
     id: element1
@@ -362,8 +361,4 @@ Item {
 
 
 
-/*##^##
-Designer {
-    D{i:1;anchors_height:100;anchors_width:100;anchors_x:34;anchors_y:112}
-}
-##^##*/
+

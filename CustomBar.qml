@@ -1,8 +1,8 @@
 import QtQuick 2.11
 import QtQuick.Controls 2.12
-import QtQuick.Controls.Styles 1.12
+//import QtQuick.Controls.Styles 1.12
 import QtQuick.Shapes 1.12
-import QtGraphicalEffects 1.0
+//import QtGraphicalEffects 1.0
 
 Item {
     id:holder
@@ -14,14 +14,13 @@ Item {
             id: background
             source: "Image/EV-Instrument-Cluster-Design-3-05.png"
             rotation: 180
-            ColorOverlay {
-                width: parent.width
-                color: "grey"
-                anchors.fill: background
-                antialiasing: true
-                source: background
-                
-            }
+//            ColorOverlay {
+//                width: parent.width
+//                color: "grey"
+//                anchors.fill: background
+//                antialiasing: true
+//                source: background
+//            }
         }
         contentItem: Item {
             width: parent.width
@@ -50,6 +49,6 @@ Item {
 
 /*##^##
 Designer {
-    D{i:0;autoSize:true;height:480;width:640}
+    D{i:0;autoSize:true;height:480;width:640}D{i:1}
 }
 ##^##*/
