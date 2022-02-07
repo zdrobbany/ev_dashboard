@@ -2,12 +2,18 @@ import QtQuick 2.0
 
 Item {
 id: indicatorGroup
+property var config
+property color off: "#1f2626"
+property color warn_red: "#dd054d"
+property color warn_yellow: "#e0d503"
 width: 200
 height: 209
 
     IconIndicator {
         id: safetyBelt
         width: height
+        activeColor1: warn_red
+        condition: indicatorGroup.config.safety_belt ? 1 : 0
         anchors.left: parent.left
         anchors.top: parent.top
         anchors.bottom: parent.bottom
@@ -19,6 +25,9 @@ height: 209
 
     IconIndicator {
         id: brakeWarn
+        width: height
+        activeColor1: warn_red
+        condition: config.brake_indicator ? 1 : 0
         anchors.left: safetyBelt.right
         anchors.right: parent.right
         anchors.top: parent.top
@@ -33,6 +42,8 @@ height: 209
     IconIndicator {
         id: parkWarn
         width: height
+        activeColor1: warn_red
+        condition: config.park_indicator ? 1 : 0
         anchors.right: parent.right
         anchors.top: brakeWarn.bottom
         anchors.bottom: parent.bottom
@@ -45,6 +56,8 @@ height: 209
     IconIndicator {
         id: enggineWarn
         width: height
+        activeColor1: warn_yellow
+        condition: config.enggine_check ? 1 : 0
         anchors.right: parent.right
         anchors.top: parkWarn.bottom
         anchors.bottom: parent.bottom
@@ -57,6 +70,8 @@ height: 209
     IconIndicator {
         id: door
         width: height
+        activeColor1: warn_red
+        condition: config.door_indicator ? 1 : 0
         anchors.left: parent.left
         anchors.top: safetyBelt.bottom
         anchors.bottom: parent.bottom
@@ -70,6 +85,6 @@ height: 209
 
 /*##^##
 Designer {
-    D{i:0;height:206;width:200}D{i:1}D{i:2}D{i:3}D{i:4}D{i:5}
+    D{i:0;height:206;width:200}
 }
 ##^##*/

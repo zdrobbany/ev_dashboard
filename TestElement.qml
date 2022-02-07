@@ -1,15 +1,9 @@
-import QtQuick 2.15
-import QtQuick.Window 2.15
-import QtQuick.Controls 2.15
-import QtQuick.Layouts 1.15
-//import QtQuick.Shapes 1.11
-//import QtGraphicalEffects 1.0
-//import QtQuick.Shapes 1.12
+import QtQuick 2.12
+import QtQuick.Controls 2.12
+import QtQuick.Layouts 1.12
 
 Item {
     id: element1
-    x:0
-    y:0
     width: 400
     height: 360
     property var config
@@ -30,49 +24,63 @@ Item {
         anchors.bottom: parent.bottom
         anchors.right: parent.right
 
+        ButtonGroup {
+            id: mainLampGroup
+            onClicked: config.set_main_lamp(button.idx)
+//                console.log("clicked:", button.text, button.idx)
+        }
         ListView {
             id: mainLamp
             width: 200
             height: 100
+            contentHeight: 25
             clip: true
             Layout.fillHeight: true
             Layout.minimumWidth: 50
             Layout.fillWidth: true
-            Layout.minimumHeight: 50
+            Layout.minimumHeight: 100
             Layout.maximumHeight: 150
             Layout.maximumWidth: 200
-
             spacing: -15
             header: Text {
                 text: qsTr("Main Lamp")
             }
-            model: ["lamp1High", "lamp1Low", "lamp1Off"]
+            model: ["lamp1Off", "lamp1High", "lamp1Low" ]
             delegate: RadioDelegate {
                 text: modelData
-                checked: config.main_lamp
-                width: parent.width
-                height: parent.height/mainLamp.model.count
+                property int idx: index
+                checked: index == 0
+                ButtonGroup.group: mainLampGroup
             }
         }
 
+        ButtonGroup {
+            id: gearGroup
+            onClicked: config.set_gear(button.idx)
+//                console.log("clicked:", button.idx)
+        }
         ListView {
             id: gear
             height: 100
+            pixelAligned: true
+            contentHeight: 50
             clip: true
             spacing: -15
             Layout.maximumHeight: 250
             Layout.maximumWidth: 200
-            Layout.minimumHeight: 110
+            Layout.minimumHeight: 99
             Layout.minimumWidth: 50
             Layout.fillHeight: true
             Layout.fillWidth: true
             header: Text {
                 text: qsTr("Gear")
             }
-            model: ["R", "N", "D", "2", "3", "P"]
+            model: ["P", "R", "N", "D", "2", "3"]
             delegate: RadioDelegate {
                 text: modelData
-                checked: config.gear
+                checked: index == 0
+                property int idx: index
+                ButtonGroup.group: gearGroup
             }
         }
 
@@ -80,7 +88,7 @@ Item {
             id: speedElement
             width: 200
             height: 77
-            Layout.minimumHeight: 50
+            Layout.minimumHeight: 45
             Layout.fillHeight: true
             Layout.fillWidth: true
 
@@ -113,7 +121,7 @@ Item {
             id: powerElement
             width: 200
             height: 77
-            Layout.minimumHeight: 50
+            Layout.minimumHeight: 45
             Layout.fillHeight: true
             Layout.fillWidth: true
             Text {
@@ -131,9 +139,13 @@ Item {
                 x: 0
                 width: parent.width
                 height: parent.height*.7
-                to: 100
-                value: config.battery_value
+                to: 1
+                value: 0
                 anchors.top: label1.bottom
+                onValueChanged: {
+                    config.set_power_value(value*100)
+                    console.log(config.power_value)
+                }
             }
         }
 
@@ -141,7 +153,7 @@ Item {
             id: battery_element
             width: 200
             height: 77
-            Layout.minimumHeight: 50
+            Layout.minimumHeight: 45
             Layout.fillHeight: true
             Layout.fillWidth: true
             Text {
@@ -158,14 +170,17 @@ Item {
                 id: slider2
                 x: 0
                 from: 0
-                to: 100
+                to: 1
                 width: parent.width
                 height: parent.height*.7
-                value: config.battery_value
+                value: 0
                 anchors.top: label2.bottom
+                onValueChanged: {
+                    config.set_battery_value(value*100)
+                    console.log('battery: ',config.battery_value)
+                }
             }
         }
-
     }
 
 
@@ -180,89 +195,124 @@ Item {
         CheckBox {
             id: left_turn
             text: qsTr("Turn Left")
-            checked: config.left_turn
-            Layout.minimumHeight: 20
+            checked: false
+            Layout.minimumHeight: 15
             Layout.fillWidth: true
             Layout.fillHeight: true
+            onCheckedChanged: {
+                config.set_left_turn(checked)
+            }
         }
 
         CheckBox {
             id: right_turn
             text: qsTr("Turn Right")
-            checked: config.right_turn
-            Layout.minimumHeight: 20
+            checked: false
+            Layout.minimumHeight: 15
             Layout.fillHeight: true
             Layout.fillWidth: true
+            onCheckedChanged: {
+                config.set_right_turn(checked)
+            }
+        }
+        CheckBox {
+            id: hazard
+            text: qsTr("Hazard")
+            checked: false
+            Layout.minimumHeight: 15
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            onCheckedChanged: {
+                config.set_right_turn(checked)
+                config.set_left_turn(checked)
+            }
         }
         CheckBox {
             id: fog_lamp
             text: qsTr("Fog Lamp")
-            checked: config.fog_lamp
-            Layout.minimumHeight: 20
+            checked: false
+            Layout.minimumHeight: 15
             Layout.fillHeight: true
             Layout.fillWidth: true
+            onCheckedChanged: config.set_fog_lamp(checked)
         }
 
 
         CheckBox {
             id: safety_belt
             text: qsTr("Safety Belt")
-            checked: config.safety_belt
-            Layout.minimumHeight: 20
+            checked: false
+            Layout.minimumHeight: 15
             Layout.fillHeight: true
             Layout.fillWidth: true
+            onCheckedChanged: config.set_safety_belt(checked)
         }
 
         CheckBox {
             id: door
             text: qsTr("Door")
-            checked: config.door_indicator
-            Layout.minimumHeight: 20
+            checked: false
+            Layout.minimumHeight: 15
             Layout.fillHeight: true
             Layout.fillWidth: true
+            onCheckedChanged: config.set_door_indicator(checked)
         }
 
         CheckBox {
             id: enggine_check
             text: qsTr("Enggine")
-            checked: config.enggine_check
-            Layout.minimumHeight: 20
+            checked: false
+            Layout.minimumHeight: 15
             Layout.fillHeight: true
             Layout.fillWidth: true
+            onCheckedChanged: config.set_enggine_check(checked)
         }
 
         CheckBox {
             id: brake_indicator
-            text: qsTr("Fog Lamp")
-            checked: config.brake_indicator
-            Layout.minimumHeight: 20
+            text: qsTr("Brake")
+            checked: false
+            Layout.minimumHeight: 15
             Layout.fillHeight: true
             Layout.fillWidth: true
+            onCheckedChanged: config.set_brake_indicator(checked)
+        }
+
+        CheckBox {
+            id: park_indicator
+            text: qsTr("Park")
+            checked: false
+            Layout.minimumHeight: 15
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            onCheckedChanged: config.set_park_indicator(checked)
         }
 
         CheckBox {
             id: battery_temp
             text: qsTr("Battery Temp")
-            checked: config.battery_temp
-            Layout.minimumHeight: 20
+            checked: false
+            Layout.minimumHeight: 15
             Layout.fillHeight: true
             Layout.fillWidth: true
+            onCheckedChanged: config.set_battery_temp(checked)
         }
 
         CheckBox {
             id: motor_temp
             text: qsTr("Motor Temp")
-            checked: config.motor_temp
-            Layout.minimumHeight: 20
+            checked: false
+            Layout.minimumHeight: 15
             Layout.fillHeight: true
             Layout.fillWidth: true
+            onCheckedChanged: config.set_motor_temp(checked)
         }
 
 
         Rectangle {
             id: rectangle1
             color: "#716868"
-            Layout.minimumHeight: 30
+            Layout.minimumHeight: 25
             Layout.fillHeight: true
             Layout.fillWidth: true
             border.width: 2
@@ -286,79 +336,119 @@ Item {
             }
         }
 
-        TextInput {
-            id: max_distance
-            width: 80
-            height: 30
-            text: config.max_distance
-            inputMask: ""
-            mouseSelectionMode: TextInput.SelectWords
-            verticalAlignment: Text.AlignVCenter
+        Rectangle {
+            id: rectangle2
+            color: "#716868"
             Layout.minimumHeight: 25
             Layout.fillHeight: true
-            font.pixelSize: 15
             Layout.fillWidth: true
-            horizontalAlignment: Text.AlignHCenter
-            validator: IntValidator{bottom: 10; top: 1000;}
-
-            Rectangle {
-                id: rectangle2
-                color: "#716868"
-                border.width: 2
+            border.width: 2
+            TextInput {
+                id: max_distance
+                text: config.max_distance
                 anchors.fill: parent
+                inputMask: ""
+                mouseSelectionMode: TextInput.SelectWords
+                verticalAlignment: Text.AlignVCenter
+                Layout.minimumHeight: 25
+                Layout.fillHeight: true
+                font.pixelSize: 15
+                Layout.fillWidth: true
+                horizontalAlignment: Text.AlignHCenter
+                validator: IntValidator{bottom: 10; top: 1000;}
+                onAccepted: {
+                    config.set_max_distance(parseInt(max_distance.text))
+                    console.log(config.max_distance)
+                }
             }
         }
 
-        TextInput {
-            id: odo
-            width: 80
-            height: 30
-            text: config.odo
-            verticalAlignment: Text.AlignVCenter
+        Rectangle {
+            id: rectangle3
+            color: "#716868"
             Layout.minimumHeight: 25
             Layout.fillHeight: true
-            font.pixelSize: 15
             Layout.fillWidth: true
-            horizontalAlignment: Text.AlignHCenter
-            validator: IntValidator{bottom: 00; top: 1000000;}
-
-            Rectangle {
-                id: rectangle3
-                color: "#716868"
-                border.width: 2
-                anchors.fill: parent
+            border.width: 2
+            TextInput {
+                id: odo
+                width: 80
+                height: 30
+                text: config.odo
+                verticalAlignment: Text.AlignVCenter
+                Layout.minimumHeight: 25
+                Layout.fillHeight: true
+                font.pixelSize: 15
+                Layout.fillWidth: true
+                horizontalAlignment: Text.AlignHCenter
+                validator: IntValidator{bottom: 00; top: 1000000;}
+                onAccepted: {
+                    config.set_odo(parseInt(odo.text))
+                    console.log(config.odo)
+                }
             }
         }
 
-        TextInput {
-            id: trip
-            width: 80
-            height: 30
-            text: config.trip
-            verticalAlignment: Text.AlignVCenter
+        Rectangle {
+            id: rectangle4
+            color: "#716868"
             Layout.minimumHeight: 25
             Layout.fillHeight: true
-            font.pixelSize: 15
             Layout.fillWidth: true
-            horizontalAlignment: Text.AlignHCenter
-            validator: IntValidator{bottom: 00; top: 1000000;}
-
-            Rectangle {
-                id: rectangle4
-                color: "#716868"
-                border.width: 2
-                anchors.fill: parent
+            border.width: 2
+            TextInput {
+                id: trip
+                width: 80
+                height: 30
+                text: config.trip
+                verticalAlignment: Text.AlignVCenter
+                Layout.minimumHeight: 25
+                Layout.fillHeight: true
+                font.pixelSize: 15
+                Layout.fillWidth: true
+                horizontalAlignment: Text.AlignHCenter
+                validator: IntValidator{bottom: 00; top: 1000000;}
+                onAccepted: {
+                    config.set_trip(parseInt(trip.text))
+                    console.log(config.trip)
+                }
             }
         }
 
+        Rectangle {
+            id: rectangle5
+            color: "#716868"
+            Layout.fillHeight: true
+            border.width: 2
+            TextInput {
+                id: envo
+                width: 80
+                height: 30
+                text: config.envo_temp
+                Layout.fillHeight: true
+                font.pixelSize: 15
+                horizontalAlignment: Text.AlignHCenter
+                validator: IntValidator {
+                    bottom: 0
+                    top: 200
+                }
+                verticalAlignment: Text.AlignVCenter
+                Layout.fillWidth: true
+                Layout.minimumHeight: 25
+                onAccepted: {
+                    config.set_envo_temp(parseInt(envo.text))
+                    console.log(config.envo_temp)
+                }
+            }
+            Layout.fillWidth: true
+            Layout.minimumHeight: 25
+        }
     }
-
-
-
 }
 
 
-
-
-
-
+/*##^##
+Designer {
+    D{i:1;anchors_height:100;anchors_width:100;anchors_x:34;anchors_y:112}
+}
+##^##*/

@@ -1,10 +1,9 @@
-import QtQuick 2.15
-import QtQuick.Window 2.15
+import QtQuick 2.12
+import QtQuick.Window 2.12
 import QtQuick.Shapes 1.11
-import QtQuick.Controls 2.15
+import QtQuick.Controls 2.12
 import QtGraphicalEffects 1.0
-import QtQuick.Layouts 1.15
-import QtQuick.Shapes 1.15
+import QtQuick.Layouts 1.12
 import Config 1.0
 
 Window {
@@ -16,6 +15,7 @@ Window {
     title: qsTr("Pindad EV")
 
     property int speedValue: 0
+    property int ticking: 0
     property int maxSpeed: 250
     property int powerValue: 0
     property int maxPower: 100
@@ -23,13 +23,13 @@ Window {
     property color on: "#00f0ab"
     property color off: "#1f2626"
     property color blue: "#0391e0"
-    property color warn_red: "#e0d503"
-    property color warn_yellow: "#dd054d"
+    property color warn_red: "#dd054d"
+    property color warn_yellow: "#e0d503"
+
 
     Config  {
         id: config
     }
-
 
     BackGround{
         id: backGround
@@ -44,19 +44,38 @@ Window {
             anchors.top: parent.top
             anchors.horizontalCenter: parent.horizontalCenter
 
+            Timer {
+                id: ticking_timer
+                property var locale: Qt.locale()
+                interval: 1000; running: true; repeat: true
+                onTriggered: {
+                    if (config.left_turn && config.right_turn) {
+                        ticking = ticking === 0 ? 1 : 0
+                        leftTurn.condition = ticking
+                        rightTurn.condition = ticking
+                    } else if (config.right_turn) {
+                        rightTurn.condition = (rightTurn.condition === 1) ? 0 : 1
+                    } else if (config.left_turn) {
+                        leftTurn.condition = (leftTurn.condition == 1 )? 0 : 1
+                    }
+                    if (!config.right_turn) rightTurn.condition = 0
+                    if (!config.left_turn) leftTurn.condition = 0
+                    time.text = new Date().toLocaleTimeString([], {timeStyle: 'short'})
+                }
+            }
 
             IconIndicator {
                 id: leftTurn
                 imageSource: "Image/icon/Turn light icon (kiri)-01.svg"
-                conditon: 3
                 Layout.fillHeight: true
                 Layout.fillWidth: true
             }
 
             IconIndicator {
                 id: mainLamp
-                conditon: 1
-                imageSource: "Image/icon/main lamp high icon-01.svg"
+                condition: config.main_lamp
+                imageSource:"Image/icon/main lamp high icon-01.svg"
+                imageSource2: "Image/icon/Main lamp low icon-01.svg"
                 Layout.fillHeight: true
                 Layout.fillWidth: true
             }
@@ -64,9 +83,9 @@ Window {
             Text {
                 id: temp
                 width: 100
-                height: 100
+                height: parent.height
                 color: "#ffffff"
-                text: qsTr("Text")
+                text: config.envo_temp + " °C"
                 font.family: "Roboto"
                 Layout.minimumWidth: 30
                 wrapMode: Text.WrapAnywhere
@@ -74,20 +93,29 @@ Window {
                 horizontalAlignment: Text.AlignHCenter
                 Layout.fillHeight: true
                 Layout.fillWidth: true
-                font.pixelSize: 12
+                font.pixelSize: height*.3
+
             }
 
             Item {
                 id: element
                 width: 100
-                height: 100
+                height: parent.height
                 Layout.fillHeight: true
                 Layout.fillWidth: true
+                function indexGear(idx) {
+                    if (idx === 0) return "P"
+                    else if (idx === 1) return "R"
+                    else if (idx === 2) return "N"
+                    else if (idx === 3) return "D"
+                    else if (idx === 4) return "2"
+                    else if (idx === 5) return "P"
+                }
                 Text {
                     id: gear
                     height: parent.height*.7
                     color: "#00f0ab"
-                    text: qsTr("D")
+                    text: element.indexGear(config.gear)
                     font.family: "Roboto"
                     font.weight: Font.Bold
                     font.underline: true
@@ -112,23 +140,23 @@ Window {
             }
 
             Text {
-                id: element5
+                id: time
                 width: 100
-                height: 100
+                height: parent.height
                 color: "#ffffff"
-                text: qsTr("Text")
+                text: qsTr("00:00")
                 font.family: "Roboto"
                 Layout.minimumWidth: 30
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
                 Layout.fillHeight: true
                 Layout.fillWidth: true
-                font.pixelSize: 12
+                font.pixelSize: height*.3
             }
 
             IconIndicator {
                 id: fogLamp
-                conditon: 1
+                condition: config.fog_lamp ? 1 : 0
                 imageSource: "Image/icon/fog lamp icon.svg"
                 Layout.fillHeight: true
                 Layout.fillWidth: true
@@ -136,7 +164,6 @@ Window {
 
             IconIndicator {
                 id: rightTurn
-                conditon: 3
                 imageSource: "Image/icon/turn light icon (kanan)-01.svg"
                 Layout.fillHeight: true
                 Layout.fillWidth: true
@@ -228,6 +255,7 @@ Window {
 
         IndicatorGroup {
             id: indicatorGroup
+            config: config
             anchors.bottom: parent.bottom
             anchors.bottomMargin: 98
             anchors.left: headerIcon.right
@@ -374,7 +402,6 @@ Window {
         }
     }
 
-
     CustomLongBar {
         id: customLongBar
         property real vAnchor: parent.height*.11
@@ -443,7 +470,7 @@ Window {
             Layout.fillHeight: true
             Layout.fillWidth: true
             imageSource: "Image/icon/battery icon-01.svg"
-            conditon: 0
+            condition: 0
             activeColor1: window.blue
         }
 
@@ -478,7 +505,7 @@ Window {
     ColorOverlay{
         anchors.fill: motorTemp
         source: motorTemp
-        color: "#00f0ab"
+        color: config.motor_temp ? warn_red : on
         transform: Rotation { origin.x: 0; origin.y: -150; axis { x: 0; y: -1; z: 0 } angle: -25 }
     }
 
@@ -498,12 +525,14 @@ Window {
     ColorOverlay{
         anchors.fill: batteryTemp
         source: batteryTemp
-        color: "#00f0ab"
+        color: config.battery_temp ? warn_red : on
         transform: Rotation { origin.x: 0; origin.y: -200; axis { x: 0; y: 1; z: 0 } angle: -25 }
     }
     TestElement {
         id: settingPanel
+        opacity: 0.8
         config: config
+        visible: true
         x: 336
         y: 0
         width: parent.width*.3
@@ -528,14 +557,3 @@ Window {
 
 }
 
-
-
-/*##^##
-Designer {
-    D{i:0;formeditorZoom:0.66}D{i:1}D{i:4}D{i:5}D{i:6}D{i:8}D{i:9}D{i:7}D{i:10}D{i:11}
-D{i:12}D{i:3}D{i:14}D{i:15}D{i:16}D{i:13}D{i:18}D{i:19}D{i:20}D{i:17}D{i:21}D{i:22}
-D{i:24}D{i:26}D{i:28}D{i:30}D{i:32}D{i:34}D{i:36}D{i:2}D{i:38}D{i:39;invisible:true}
-D{i:40;invisible:true}D{i:42}D{i:43;invisible:true}D{i:44}D{i:41}D{i:45}D{i:47}D{i:49}
-D{i:51}D{i:53}D{i:54}
-}
-##^##*/
