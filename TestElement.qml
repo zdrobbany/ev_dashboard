@@ -56,8 +56,10 @@ Item {
 
         ButtonGroup {
             id: gearGroup
-            onClicked: config.set_gear(button.idx)
-//                console.log("clicked:", button.idx)
+            onClicked: {
+                config.set_gear(button.idx)
+                console.log("clicked:", button.idx)
+            }
         }
         ListView {
             id: gear

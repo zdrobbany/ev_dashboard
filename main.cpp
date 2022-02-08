@@ -1,6 +1,14 @@
 #include <QGuiApplication>
+
+#include <Qt3DRender/QRenderAspect>
+#include <Qt3DRender/QSceneLoader>
+#include <Qt3DCore/QEntity>
+#include <Qt3DInput/QInputAspect>
+#include <Qt3DQuick/QQmlAspectEngine>
+
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
+#include <qqml.h>
 #include <config.h>
 
 int main(int argc, char *argv[])

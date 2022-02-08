@@ -1,8 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>DialComponent.qml</file>
-        <file>OutterLine.qml</file>
         <file>Fonts/CherrySwash-Bold.otf</file>
         <file>Fonts/CherrySwash-Regular.otf</file>
         <file>Fonts/IBMPlexMono-Bold.otf</file>
@@ -52,9 +50,7 @@
         <file>Fonts/IBMPlexSerif-Thin.otf</file>
         <file>Fonts/IBMPlexSerif-ThinItalic.otf</file>
         <file>Fonts/SIL Open Font License.txt</file>
-        <file>Status.qml</file>
         <file>Image/ev-exmp.png</file>
-        <file>CustomBar.qml</file>
         <file>Image/Not Charging.png</file>
         <file>Image/EV-Instrument-Cluster-Design-3-05.png</file>
         <file>Image/Background.png</file>
@@ -90,5 +86,11 @@
         <file>IconIndicator.qml</file>
         <file>IndicatorGroup.qml</file>
         <file>TestElement.qml</file>
+        <file>ViewLogo3D.qml</file>
+        <file>Image/logo/Logo Pindad 3d.blend</file>
+        <file>Image/logo/Logo Pindad 3d.mtl</file>
+        <file>Image/logo/Logo Pindad 3d.obj</file>
+        <file>Image/logo/test.blend</file>
+        <file>Image/logo/test.dae</file>
     </qresource>
 </RCC>

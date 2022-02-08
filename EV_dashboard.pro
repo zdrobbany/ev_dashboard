@@ -1,4 +1,4 @@
-QT += quick
+QT += quick 3dcore 3dinput 3dquick 3dlogic  3dquickextras  3dextras
 
 CONFIG += c++11
 

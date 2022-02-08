@@ -31,6 +31,13 @@ Window {
         id: config
     }
 
+    ViewLogo3D {
+        anchors.fill: parent
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.horizontalCenter: parent.horizontalCenter
+
+    }
+    /*
     BackGround{
         id: backGround
         anchors.fill: parent
@@ -109,13 +116,14 @@ Window {
                     else if (idx === 2) return "N"
                     else if (idx === 3) return "D"
                     else if (idx === 4) return "2"
-                    else if (idx === 5) return "P"
+                    else if (idx === 5) return "3"
+                    else return "P"
                 }
                 Text {
                     id: gear
                     height: parent.height*.7
                     color: "#00f0ab"
-                    text: element.indexGear(config.gear)
+                    text: element.indexGear(config.gear ? config.gear : "P")
                     font.family: "Roboto"
                     font.weight: Font.Bold
                     font.underline: true
@@ -532,7 +540,7 @@ Window {
         id: settingPanel
         opacity: 0.8
         config: config
-        visible: true
+        visible: false
         x: 336
         y: 0
         width: parent.width*.3
@@ -554,6 +562,15 @@ Window {
             settingPanel.visible = settingPanel.visible ? false : true
         }
     }
-
+    */
 }
 
+
+/*##^##
+Designer {
+    D{i:0;formeditorZoom:0.9}D{i:1}D{i:2}D{i:5}D{i:6}D{i:7}D{i:8}D{i:10}D{i:11}D{i:9}
+D{i:12}D{i:13}D{i:14}D{i:4}D{i:16}D{i:17}D{i:18}D{i:15}D{i:20}D{i:21}D{i:22}D{i:19}
+D{i:23}D{i:24}D{i:26}D{i:28}D{i:30}D{i:32}D{i:34}D{i:36}D{i:38}D{i:3}D{i:40}D{i:41}
+D{i:42}D{i:44}D{i:45}D{i:46}D{i:43}D{i:47}D{i:49}D{i:51}D{i:53}D{i:55}D{i:56}
+}
+##^##*/
