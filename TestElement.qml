@@ -27,7 +27,7 @@ Item {
         ButtonGroup {
             id: mainLampGroup
             onClicked: config.set_main_lamp(button.idx)
-//                console.log("clicked:", button.text, button.idx)
+//                // console.log("clicked:", button.text, button.idx)
         }
         ListView {
             id: mainLamp
@@ -58,7 +58,7 @@ Item {
             id: gearGroup
             onClicked: {
                 config.set_gear(button.idx)
-                console.log("clicked:", button.idx)
+                // console.log("clicked:", button.idx)
             }
         }
         ListView {
@@ -114,7 +114,7 @@ Item {
                 value: 0
                 onValueChanged: {
                     config.set_speed_value(value*config.max_speed)
-                    console.log(config.speed_value)
+                    // console.log(config.speed_value)
                 }
             }
         }
@@ -146,7 +146,7 @@ Item {
                 anchors.top: label1.bottom
                 onValueChanged: {
                     config.set_power_value(value*100)
-                    console.log(config.power_value)
+                    // console.log(config.power_value)
                 }
             }
         }
@@ -179,7 +179,7 @@ Item {
                 anchors.top: label2.bottom
                 onValueChanged: {
                     config.set_battery_value(value*100)
-                    console.log('battery: ',config.battery_value)
+                    // console.log('battery: ',config.battery_value)
                 }
             }
         }
@@ -333,7 +333,7 @@ Item {
                 validator: IntValidator{bottom: 80; top: 400;}
                 onAccepted: {
                     config.set_max_speed(parseInt(max_speed.text))
-                    console.log(config.max_speed)
+                    // console.log(config.max_speed)
                 }
             }
         }
@@ -360,7 +360,7 @@ Item {
                 validator: IntValidator{bottom: 10; top: 1000;}
                 onAccepted: {
                     config.set_max_distance(parseInt(max_distance.text))
-                    console.log(config.max_distance)
+                    // console.log(config.max_distance)
                 }
             }
         }
@@ -386,7 +386,7 @@ Item {
                 validator: IntValidator{bottom: 00; top: 1000000;}
                 onAccepted: {
                     config.set_odo(parseInt(odo.text))
-                    console.log(config.odo)
+                    // console.log(config.odo)
                 }
             }
         }
@@ -412,7 +412,7 @@ Item {
                 validator: IntValidator{bottom: 00; top: 1000000;}
                 onAccepted: {
                     config.set_trip(parseInt(trip.text))
-                    console.log(config.trip)
+                    // console.log(config.trip)
                 }
             }
         }
@@ -439,7 +439,7 @@ Item {
                 Layout.minimumHeight: 25
                 onAccepted: {
                     config.set_envo_temp(parseInt(envo.text))
-                    console.log(config.envo_temp)
+                    // console.log(config.envo_temp)
                 }
             }
             Layout.fillWidth: true

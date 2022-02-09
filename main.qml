@@ -4,8 +4,10 @@ import QtQuick.Shapes 1.11
 import QtQuick.Controls 2.12
 import QtGraphicalEffects 1.0
 import QtQuick.Layouts 1.12
+import QtQuick3D 1.15
 import Config 1.0
-
+//import Quick3DAssets.Logo_Pindad_3d 1.0
+import "./asset_imports/Quick3DAssets/Logo_Pindad_3d"
 Window {
     id: window
     visible: true
@@ -31,13 +33,6 @@ Window {
         id: config
     }
 
-    ViewLogo3D {
-        anchors.fill: parent
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.horizontalCenter: parent.horizontalCenter
-
-    }
-    /*
     BackGround{
         id: backGround
         anchors.fill: parent
@@ -536,6 +531,66 @@ Window {
         color: config.battery_temp ? warn_red : on
         transform: Rotation { origin.x: 0; origin.y: -200; axis { x: 0; y: 1; z: 0 } angle: -25 }
     }
+
+    View3D {
+        id: view3D
+        width: parent.width*.25
+        height: parent.height*.7
+        anchors.top: parent.top
+        anchors.topMargin: parent.height*.1
+        anchors.horizontalCenter: parent.horizontalCenter
+        scale: 1
+
+        environment: sceneEnvironment
+
+        SceneEnvironment {
+            id: sceneEnvironment
+            antialiasingMode: SceneEnvironment.MSAA
+            antialiasingQuality: SceneEnvironment.High
+        }
+
+        Node {
+            id: scene
+            eulerRotation.y: 0
+            DirectionalLight {
+                id: directionalLight
+            }
+
+            PerspectiveCamera {
+                id: camera
+                y: 4.5
+                z: 20
+            }
+
+//            Model {
+//                id: cubeModel
+//                eulerRotation.y: 45
+//                eulerRotation.x: 30
+//                materials: cubeMaterial
+//                source: "#Cube"
+//                DefaultMaterial {
+//                    id: cubeMaterial
+//                    diffuseColor: "#4aee45"
+//                }
+//            }
+
+            Logo_Pindad_3d {
+                id: logo_Pindad_3d1
+                x: 0
+                pivot.x: 0
+                scale.z: 10
+                scale.y: 10
+                scale.x: 10
+                RotationAnimation on eulerRotation.y {
+                    loops: Animation.Infinite
+                    from: 0
+                    to: 360
+                    duration: 5000
+                }
+            }
+        }
+    }
+
     TestElement {
         id: settingPanel
         opacity: 0.8
@@ -562,15 +617,15 @@ Window {
             settingPanel.visible = settingPanel.visible ? false : true
         }
     }
-    */
 }
+
+
 
 
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:0.9}D{i:1}D{i:2}D{i:5}D{i:6}D{i:7}D{i:8}D{i:10}D{i:11}D{i:9}
-D{i:12}D{i:13}D{i:14}D{i:4}D{i:16}D{i:17}D{i:18}D{i:15}D{i:20}D{i:21}D{i:22}D{i:19}
-D{i:23}D{i:24}D{i:26}D{i:28}D{i:30}D{i:32}D{i:34}D{i:36}D{i:38}D{i:3}D{i:40}D{i:41}
-D{i:42}D{i:44}D{i:45}D{i:46}D{i:43}D{i:47}D{i:49}D{i:51}D{i:53}D{i:55}D{i:56}
+    D{i:0;formeditorZoom:1.1}D{i:1}D{i:3}D{i:14}D{i:18}D{i:22}D{i:23}D{i:25}D{i:27}D{i:29}
+D{i:31}D{i:33}D{i:35}D{i:37}D{i:2}D{i:39}D{i:40}D{i:41}D{i:43}D{i:44}D{i:45}D{i:42}
+D{i:46}D{i:48}D{i:50}D{i:52}D{i:55}D{i:57}D{i:58}D{i:59}D{i:56}D{i:54}D{i:60}D{i:61}
 }
 ##^##*/

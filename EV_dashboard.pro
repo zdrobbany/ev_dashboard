@@ -21,7 +21,7 @@ SOURCES += \
 RESOURCES += qml.qrc
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
-QML_IMPORT_PATH = \5.15.2\msvc2019_64\qml\QtGraphicalEffects
+QML_IMPORT_PATH = :/asset_imports/Quick3DAssets/Logo_Pindad_3d/qmldir
 
 # Additional import path used to resolve QML modules just for Qt Quick Designer
 QML_DESIGNER_IMPORT_PATH =

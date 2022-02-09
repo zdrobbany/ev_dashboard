@@ -86,11 +86,21 @@
         <file>IconIndicator.qml</file>
         <file>IndicatorGroup.qml</file>
         <file>TestElement.qml</file>
-        <file>ViewLogo3D.qml</file>
         <file>Image/logo/Logo Pindad 3d.blend</file>
         <file>Image/logo/Logo Pindad 3d.mtl</file>
         <file>Image/logo/Logo Pindad 3d.obj</file>
         <file>Image/logo/test.blend</file>
         <file>Image/logo/test.dae</file>
+        <file>asset_imports/Quick3DAssets/Logo_Pindad_3d/_icons/Logo_Pindad_3d_libicon</file>
+        <file>asset_imports/Quick3DAssets/Logo_Pindad_3d/_icons/Logo_Pindad_3d_libicon@2x</file>
+        <file>asset_imports/Quick3DAssets/Logo_Pindad_3d/meshes/curve.mesh</file>
+        <file>asset_imports/Quick3DAssets/Logo_Pindad_3d/meshes/curve_001.mesh</file>
+        <file>asset_imports/Quick3DAssets/Logo_Pindad_3d/meshes/curve_002.mesh</file>
+        <file>asset_imports/Quick3DAssets/Logo_Pindad_3d/meshes/curve_003.mesh</file>
+        <file>asset_imports/Quick3DAssets/Logo_Pindad_3d/meshes/curve_004.mesh</file>
+        <file>asset_imports/Quick3DAssets/Logo_Pindad_3d/_importdata.json</file>
+        <file>asset_imports/Quick3DAssets/Logo_Pindad_3d/Logo_Pindad_3d.hints</file>
+        <file>asset_imports/Quick3DAssets/Logo_Pindad_3d/Logo_Pindad_3d.qml</file>
+        <file>asset_imports/Quick3DAssets/Logo_Pindad_3d/qmldir</file>
     </qresource>
 </RCC>
